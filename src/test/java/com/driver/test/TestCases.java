@@ -28,21 +28,25 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 public class TestCases {
     @Autowired
     private MockMvc mockMvc;
-    @Autowired
-    private OrderController orderController;
 
-    public TestCases() {
-    }
+//    @Autowired
+//    private OrderController orderController;
 
-    @BeforeEach
-    void setUp() {
-    }
 
     @Test
     public void testAddOrder() throws Exception {
         String requestBody = "{\"id\":\"123\", \"deliveryTime\":\"12:30\"}";
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/orders/add-order", new Object[0]).contentType(MediaType.APPLICATION_JSON).content(requestBody)).andDo(MockMvcResultHandlers.print()).andExpect(MockMvcResultMatchers.status().isCreated());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/orders/add-order")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated()); //
     }
+//    @Test
+//    public void testAddOrder() throws Exception {
+//        String requestBody = "{\"id\":\"123\", \"deliveryTime\":\"12:30\"}";
+//        this.mockMvc.perform(MockMvcRequestBuilders.post("/orders/add-order", new Object[0]).contentType(MediaType.APPLICATION_JSON).content(requestBody)).andDo(MockMvcResultHandlers.print()).andExpect(MockMvcResultMatchers.status().isCreated());
+//    }
 
     @Test
     public void testAddPartner() throws Exception {
